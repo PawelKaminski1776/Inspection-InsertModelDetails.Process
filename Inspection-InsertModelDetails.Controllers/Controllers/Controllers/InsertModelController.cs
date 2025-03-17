@@ -5,20 +5,20 @@ using InspectionInsertModelDetails.Controllers.DtoFactory;
 namespace InspectionInsertModelDetails.Controllers
 {
     [ApiController]
-    [Route("Api/Controllers")]
-    public class MyController : BaseController
+    [Route("Api/InsertModelDetails")]
+    public class InsertModelController : BaseController
     {
-        public MyController(IMessageSession messageSession, IDtoFactory dtoFactory)
+        public InsertModelController(IMessageSession messageSession, IDtoFactory dtoFactory)
             : base(messageSession, dtoFactory) { }
 
-        [HttpPost("Message")]
-        public async Task<IActionResult> AddAccount([FromBody] MessageRequest dto)
+        [HttpPost("Training-Status")]
+        public async Task<IActionResult> AddAccount([FromBody] ModelDetailsRequest dto)
         {
-            var loginDto = (MessageRequest)_dtoFactory.UseDto("messagedto", dto);
+            var Dto = (ModelDetailsRequest)_dtoFactory.UseDto("insertmodeldetailsdto", dto);
 
             try
             {
-                var response = await _messageSession.Request<MessageResponse>(loginDto);
+                var response = await _messageSession.Request<ModelDetailsResponse>(Dto);
                 return Ok(response);
             }
             catch (Exception ex)

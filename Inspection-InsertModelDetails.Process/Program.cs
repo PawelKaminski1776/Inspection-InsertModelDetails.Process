@@ -6,6 +6,7 @@ using InspectionInsertModelDetails.Controllers.DtoFactory;
 using InspectionInsertModelDetails.Process;
 using InspectionInsertModelDetails.Channel.Services;
 using InspectionInsertModelDetails.Messages.Dtos;
+using InspectionUserDetails.Channel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,8 @@ if (builder.Environment.IsDevelopment())
 {
     builder.WebHost.ConfigureKestrel(options =>
     {
-        options.ListenAnyIP(5003);
-        options.ListenAnyIP(5004, listenOptions =>
+        options.ListenAnyIP(5007);
+        options.ListenAnyIP(5008, listenOptions =>
         {
             listenOptions.UseHttps();
         });
@@ -29,7 +30,7 @@ else
 {
     builder.WebHost.ConfigureKestrel(options =>
     {
-        options.ListenAnyIP(5003);
+        options.ListenAnyIP(5007);
     });
 }
 
@@ -39,7 +40,13 @@ builder.Services.AddScoped<MongoConnect>(provider =>
     return new MongoConnect(connectionString);
 });
 
-builder.Services.AddScoped<MyHandler>();
+builder.Services.AddScoped<InsertModelDetailsService>(provider =>
+{
+    var connectionString = appConfig.GetSetting("ConnectionStrings:DefaultConnection");
+    return new InsertModelDetailsService(connectionString);
+});
+
+builder.Services.AddScoped<InsertModelDetailsHandler>();
 
 
 builder.Services.AddControllers();
@@ -79,7 +86,7 @@ transport.StorageDirectory("/app/.learningtransport");
 var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
 var routing = transport.Routing();
-routing.RouteToEndpoint(typeof(MessageRequest), "NServiceBusHandlers");
+routing.RouteToEndpoint(typeof(ModelDetailsRequest), "NServiceBusHandlers");
 
 var scanner = endpointConfiguration.AssemblyScanner().ScanFileSystemAssemblies = true;
 
