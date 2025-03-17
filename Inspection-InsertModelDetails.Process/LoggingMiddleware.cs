@@ -1,4 +1,4 @@
-﻿namespace InspectionTemplate.Process
+namespace InspectionInsertModelDetails.Process
 {
     public class LoggingMiddleware
     {

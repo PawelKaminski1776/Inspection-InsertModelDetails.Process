@@ -1,6 +1,6 @@
-using InspectionTemplate.Messages.Dtos;
+using InspectionInsertModelDetails.Messages.Dtos;
 
-namespace InspectionTemplate.Handlers
+namespace InspectionInsertModelDetails.Handlers
 {
     public class MyHandler : IHandleMessages<MessageRequest>
     {

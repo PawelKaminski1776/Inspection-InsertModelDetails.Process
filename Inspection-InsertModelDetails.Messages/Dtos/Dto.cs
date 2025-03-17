@@ -1,6 +1,6 @@
-﻿using NServiceBus;
+using NServiceBus;
 
-namespace InspectionTemplate.Messages.Dtos
+namespace InspectionInsertModelDetails.Messages.Dtos
 {
     public class MessageRequest : IMessage
     {

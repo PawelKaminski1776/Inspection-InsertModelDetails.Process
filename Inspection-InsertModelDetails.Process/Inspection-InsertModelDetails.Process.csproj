@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -22,9 +22,9 @@
     <PackageReference Include="WindowsAzure.ServiceBus" Version="7.0.1" />
   </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Inspection-Template.Controllers\Inspection-Template.Controllers.csproj" />
-		<ProjectReference Include="..\Inspection-Template.Channel\Inspection-Template.Channel.csproj" />
-		<ProjectReference Include="..\Inspection-Template.Handlers\Inspection-Template.Handlers.csproj" />
-	    <ProjectReference Include="..\Inspection-Template.Messages\Inspection-Template.Messages.csproj" />
+		<ProjectReference Include="..\Inspection-InsertModelDetails.Controllers\Inspection-InsertModelDetails.Controllers.csproj" />
+		<ProjectReference Include="..\Inspection-InsertModelDetails.Channel\Inspection-InsertModelDetails.Channel.csproj" />
+		<ProjectReference Include="..\Inspection-InsertModelDetails.Handlers\Inspection-InsertModelDetails.Handlers.csproj" />
+	    <ProjectReference Include="..\Inspection-InsertModelDetails.Messages\Inspection-InsertModelDetails.Messages.csproj" />
 	</ItemGroup>
 </Project>
