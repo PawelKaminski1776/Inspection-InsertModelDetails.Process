@@ -14,7 +14,7 @@ pipeline {
                 checkout scm: [
                     $class: 'GitSCM', 
                     branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: 'https://github.com/PawelKaminski1776/Inspection-Template.git',
+                    userRemoteConfigs: [[url: 'https://github.com/PawelKaminski1776/Inspection-InsertModelDetails.Process.git',
 					credentialsId: 'github-api-token']]
                 ]
             }
