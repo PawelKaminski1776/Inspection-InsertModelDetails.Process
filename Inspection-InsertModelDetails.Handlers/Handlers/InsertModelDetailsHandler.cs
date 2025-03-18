@@ -6,8 +6,9 @@ namespace InspectionInsertModelDetails.Handlers
     public class InsertModelDetailsHandler : IHandleMessages<ModelDetailsRequest>
     {
         private readonly InsertModelDetailsService insertModelDetailsService;
-        public InsertModelDetailsHandler()
+        public InsertModelDetailsHandler(InsertModelDetailsService InsertModelDetailsService)
         {
+            this.insertModelDetailsService = InsertModelDetailsService;
         }
 
         public async Task Handle(ModelDetailsRequest message, IMessageHandlerContext context)
@@ -22,11 +23,15 @@ namespace InspectionInsertModelDetails.Handlers
                 {
                     mongores = await insertModelDetailsService.UpdateModel(message);
                 }
-                else
+                if (response.Equals("Model Not Found"))
                 {
                     mongores = await insertModelDetailsService.InsertModel(message);
                 }
-
+                if (!response.Equals("Model Exists") || !response.Equals("Model Not Found"))
+                {
+                    mongores = response;
+                }
+                
                 await context.Reply(new ModelDetailsResponse { Message = mongores });
 
             }
